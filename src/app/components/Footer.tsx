@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Stack, Link as MuiLink } from '@mui/material'; 
 import PhoneIcon from '@mui/icons-material/Phone'; 
+import { Route, Routes } from 'react-router-dom';
 
 
 
@@ -24,9 +25,9 @@ const Footer: React.FC = () => {
         alignItems="center" 
         sx={{ mb: 3, flexWrap: 'wrap' }} 
       > 
-        <MuiLink href="/Portfolio/contact" color="inherit" underline="hover" sx={{ display: 'flex', alignItems: 'center' }}>
-           <PhoneIcon sx={{ mr: 0.5 }} /> Contact
-        </MuiLink>
+        <Route path="/Portfolio/contact"  >
+           <PhoneIcon sx={{ mr: 0.5 ,display: 'flex', alignItems: 'center'}} /> Contact
+        </Route>
 
 
       </Stack>
