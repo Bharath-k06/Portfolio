@@ -4,7 +4,7 @@ import { Button, Typography, Stack, Avatar, Box } from "@mui/material"; // Added
 import { motion } from "framer-motion";
 import DownloadIcon from "@mui/icons-material/Download";
 
-import WaveDivider from "./WaveDivider";
+
 
 
 const containerVariants = {
@@ -110,7 +110,7 @@ const Hero: React.FC = () => { // Renamed to Hero to match file name
             </motion.div>
         </Box>
       </motion.div>
-      <WaveDivider />
+    
     </>
   );
 };

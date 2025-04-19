@@ -2,20 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Page Not Found</title>
+  <title>Redirecting...</title>
   <script type="text/javascript">
-    var pathSegments = location.pathname.split('/');
-    // Assuming your repo name is the second segment (index 1) after the username.github.io part
-    // Example: https://bharath-k06.github.io/Portfolio/about -> pathSegments = ["", "Portfolio", "about"]
-    // The correct base path is "/Portfolio/"
-    var repoName = pathSegments[1];
-    // Redirect to the index.html at the base path, preserving query parameters
-    location.replace(
-      location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/' + repoName + '/' + location.search
-    );
+    // Get the repository name (replace "Portfolio" with your actual repo name if different)
+    var repoName = "Portfolio";
+
+    // Construct the base URL for the repository (e.g., /Portfolio/)
+    var repoBaseUrl = '/' + repoName + '/';
+
+    // Redirect to the base URL of the repository.
+    // The browser *should* keep the original full path (e.g., /Portfolio/about) in the address bar.
+    // When index.html loads at this base, React Router will read the full path from the URL.
+    window.location.replace(repoBaseUrl + window.location.search); // Append original search parameters if any
   </script>
 </head>
 <body>
-  This page is redirecting...
+  Redirecting...
 </body>
 </html>
