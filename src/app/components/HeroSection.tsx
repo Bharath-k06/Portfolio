@@ -14,6 +14,7 @@ const containerVariants = {
     transition: {
       delayChildren: 0.3,
       staggerChildren: 0.2,
+      
       duration: 0.8,
       ease: "easeOut"
     },
@@ -91,7 +92,7 @@ const Hero: React.FC = () => {
               }}
           >
               <Avatar
-                  src="/mainImage.jpg"
+                  src="/Portfolio/icons/mainImage.jpg"
                   alt="B"
                   sx={{
                       width: 220,
