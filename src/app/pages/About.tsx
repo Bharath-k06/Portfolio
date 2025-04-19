@@ -44,17 +44,17 @@ const skills = [
 ];
 
 const toolsAndLanguages = [
-  { name: "Java", icon: <JavaIcon />, image: "/icons/icons8-java-48.png" },
-  { name: "Spring Boot", icon: <SpringBootIcon />, image: "/icons/springboot.png" },
-  { name: "React", icon: <ReactIcon />, image: "/icons/react.png" },
-  { name: "Angular", icon: <AngularIcon />, image: "/icons/angular.png" },
+  { name: "Java", icon: <JavaIcon />, image: "/Portfolio/icons/icons8-java-48.png" },
+  { name: "Spring Boot", icon: <SpringBootIcon />, image: "/Portfolio/icons/springboot.png" },
+  { name: "React", icon: <ReactIcon />, image: "/Portfolio/icons/react.png" },
+  { name: "Angular", icon: <AngularIcon />, image: "/Portfolio/icons/angular.png" },
   { name: "GitHub", icon: <GitHub />, image: null },
-  { name: "JavaScript", icon: <JavascriptIcon />, image: "/icons/js.png" },
-  { name: "TypeScript", icon: <TypescriptIcon />, image: "/icons/typescript.png" },
-  { name: "MongoDB", icon: <MongodbIcon />, image: "/icons/mongodb.png" },
-  { name: "MySQL", icon: <MysqlIcon />, image: "/icons/mysql.png" },
-  { name: "Kafka", icon: <KafkaIcon />, image: "/icons/kafka.png" },
-  { name: "AWS", icon: <AwsIcon />, image: "/icons/aws.png" },
+  { name: "JavaScript", icon: <JavascriptIcon />, image: "/Portfolio/icons/js.png" },
+  { name: "TypeScript", icon: <TypescriptIcon />, image: "/Portfolio/icons/typescript.png" },
+  { name: "MongoDB", icon: <MongodbIcon />, image: "/Portfolio/icons/mongodb.png" },
+  { name: "MySQL", icon: <MysqlIcon />, image: "/Portfolio/icons/mysql.png" },
+  { name: "Kafka", icon: <KafkaIcon />, image: "/Portfolio/icons/kafka.png" },
+  { name: "AWS", icon: <AwsIcon />, image: "/Portfolio/icons/aws.png" },
 ];
 
 const workExperience = [
