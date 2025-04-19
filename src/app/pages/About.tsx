@@ -110,15 +110,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const continuousHorizontal = {
-    x: [0, 5, 0],
-    transition: {
-        duration: 3,
-        ease: "easeInOut",
-    },
-    //repeat: Infinity as number,
-    //repeatType: "loop" as RepeatType,
-};
+
 
 
 const About: React.FC = () => {

@@ -1,5 +1,5 @@
 // src/app/components/Navbar.tsx
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar, Box, Button, useTheme, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material'; // Added Drawer, List, ListItem, ListItemText, IconButton
 import MenuIcon from '@mui/icons-material/Menu'; // Added MenuIcon
