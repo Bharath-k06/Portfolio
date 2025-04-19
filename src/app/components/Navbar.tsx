@@ -1,13 +1,13 @@
-import  { useEffect, useState } from 'react';
+// src/app/components/Navbar.tsx
+import React, { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { AppBar, Toolbar, Box, Button, useTheme } from '@mui/material';
-
+import { AppBar, Toolbar, Box, Button, useTheme, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material'; // Added Drawer, List, ListItem, ListItemText, IconButton
+import MenuIcon from '@mui/icons-material/Menu'; // Added MenuIcon
 
 const Navbar = () => {
-  const location = useLocation(); // Hook to get the current location object
-  const theme = useTheme(); // Access the MUI theme for consistent styling
+  const location = useLocation();
+  const theme = useTheme();
 
-  // Define the navigation links
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
@@ -15,7 +15,6 @@ const Navbar = () => {
     { path: '/contact', label: 'Contact' },
   ];
 
-  // Define keyframes for the wavy animation
   const wavyAnimation = {
     '@keyframes wavy': {
       '0%, 100%': { transform: 'translateY(0)' },
@@ -23,59 +22,48 @@ const Navbar = () => {
       '75%': { transform: 'translateY(2px)' },
     },
   };
-  
 
-  // Function to determine link styling (including active state and hover effects)
   const getLinkStyle = (path: string) => {
     const isActive = location.pathname === path;
-    // Text colors remain black/dark grey as requested previously
-    const activeColor = theme.palette.text.primary; // Using primary text color (usually black)
-    const hoverColor = theme.palette.text.secondary; // Using secondary text color (a lighter black/dark grey)
-    const defaultColor = theme.palette.text.primary; // Default text color is also black
+    const activeColor = theme.palette.text.primary;
+    const hoverColor = theme.palette.text.secondary;
+    const defaultColor = theme.palette.text.primary;
 
     return {
-      mx: 1.5, // Horizontal margin for spacing between links
-      my: 0.5, // Reduced vertical margin for compactness
-      color: isActive ? activeColor : defaultColor, // Active link color vs default
-      fontWeight: isActive ? 'bold' : 'normal', // Make active link bold
+      mx: { xs: 0.5, sm: 1.5 }, // Reduced horizontal margin on extra-small screens
+      my: 0.5,
+      color: isActive ? activeColor : defaultColor,
+      fontWeight: isActive ? 'bold' : 'normal',
       textDecoration: 'none',
-      position: 'relative', // Needed for the pseudo-element animation
-      // Add the wavy keyframes to the style object
+      position: 'relative',
       ...wavyAnimation,
-      transition: 'color 0.3s ease-in-out', // Smooth color transition
+      transition: 'color 0.3s ease-in-out',
 
-      '&::after': { // Pseudo-element for underline animation
+      '&::after': {
         content: '""',
         position: 'absolute',
         width: '100%',
-        // Control underline visibility based on active state
         transform: isActive ? 'scaleX(1)' : 'scaleX(0)',
         height: '2px',
-        bottom: '-4px', // Position the underline slightly below the text
+        bottom: '-4px',
         left: '0',
-        // Use active color for the underline when link is active
         backgroundColor: activeColor,
-        transformOrigin: 'bottom center', // Animation origin
-        // Smooth underline animation
+        transformOrigin: 'bottom center',
         transition: 'transform 0.3s ease-in-out, background-color 0.3s ease-in-out',
       },
 
-      // Specific hover styles
       '&:hover': {
-        color: hoverColor, // Change text color on hover
-        // Apply wavy animation on hover
-        animation: 'wavy 0.6s ease-in-out infinite', // Animation details
+        color: hoverColor,
+        animation: 'wavy 0.6s ease-in-out infinite',
         '&::after': {
-          // If not active, show underline on hover
           ...(
             !isActive && {
-              transform: 'scaleX(1)', // Show underline on hover
-              backgroundColor: hoverColor, // Match underline color to hover text color
+              transform: 'scaleX(1)',
+              backgroundColor: hoverColor,
               transformOrigin: 'bottom center',
             }
           ),
-           // If active, keep the active underline color on hover
-           ...(
+          ...(
             isActive && {
                backgroundColor: activeColor,
             }
@@ -83,69 +71,125 @@ const Navbar = () => {
         }
       },
 
-      // Ensure active link retains its style and doesn't get the hover animation
       ...(isActive && {
-         '&:hover': {
-            color: activeColor, // Keep active color on hover
-            animation: 'none', // Disable wavy animation on active link hover
-         }
+          '&:hover': {
+            color: activeColor,
+            animation: 'none',
+           }
       })
     };
   };
+
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false); // State for mobile drawer
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
 
   useEffect(() => {
     const handleScroll = () => {
-      
-        setIsScrolled(true);
-      
+      setIsScrolled(window.scrollY > 0); // Set to true if scrolled down
     };
 
     window.addEventListener('scroll', handleScroll);
 
-    // Clean up the event listener
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // Empty dependency array means this effect runs once on mount
-
+  }, []);
 
   return (
     <AppBar
-      // Make it sticky to the top on scroll
       position="sticky"
-      // Remove shadow for flatter look
       elevation={0}
       sx={{
-        // Set background to transparent
-        
-        backgroundColor: isScrolled?"white":'transparent',
-
-        // Remove backdrop filter as it's not needed for a fully transparent background
+        backgroundColor: isScrolled ? "white" : 'transparent',
         backdropFilter: 'none',
         WebkitBackdropFilter: 'none',
+        transition: 'background-color 0.3s ease-in-out', // Added transition for scroll effect
       }}
     >
-      {/* Toolbar with reduced minimum height for compactness */}
       <Toolbar sx={{
         display: 'flex',
-        justifyContent: 'center', // Center the content (the Box) horizontally
-        minHeight: { xs: 56, sm: 48 } // Responsive height (adjust as needed)
+        justifyContent: 'center',
+        minHeight: { xs: 56, sm: 48 },
       }}>
-        {/* Box acts as a container for the links */}
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        {/* Mobile menu icon - visible only on extra-small screens */}
+        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, color: isScrolled ? 'inherit' : theme.palette.text.primary }} // Adjusted color based on scroll
+            >
+              <MenuIcon />
+            </IconButton>
+        </Box>
+
+
+        {/* Desktop/Tablet links - hidden on extra-small screens */}
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'center', flexGrow: 1 }}> {/* Adjusted display and centering */}
           {navItems.map((item) => (
             <Button
               key={item.path}
-              component={RouterLink} // Use React Router's Link component
-              to={item.path}         // Set the destination path
-              sx={getLinkStyle(item.path)} // Apply dynamic styles
+              component={RouterLink}
+              to={item.path}
+              sx={getLinkStyle(item.path)}
             >
               {item.label}
             </Button>
           ))}
         </Box>
+         {/* Placeholder to balance the flex layout when menu icon is visible */}
+         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}></Box>
+
       </Toolbar>
+       {/* Mobile Navigation Drawer */}
+       <Drawer
+           anchor="left"
+           open={mobileOpen}
+           onClose={handleDrawerToggle}
+           ModalProps={{
+             keepMounted: true, // Better open performance on mobile.
+           }}
+           sx={{
+             display: { xs: 'block', md: 'none' },
+             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+           }}
+         >
+           <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+              {/* Add a title or logo here if desired */}
+            <List>
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path; // Determine if the current item is active
+                return (
+                  <ListItem
+                    key={item.path}
+                    component={RouterLink}
+                    to={item.path}
+                    onClick={handleDrawerToggle}
+                    disablePadding
+                    // Optional: Add a background color to the active item for more emphasis
+                    // sx={{ backgroundColor: isActive ? 'rgba(0, 0, 0, 0.08)' : 'transparent' }}
+                  >
+                    <ListItemText
+                      primary={item.label}
+                      sx={{
+                        textAlign: 'center',
+                        py: 1,
+                        color: isActive ? theme.palette.primary.main : theme.palette.text.primary, // Change text color if active
+                        fontWeight: isActive ? 'bold' : 'normal', // Make text bold if active
+                      }}
+                    />
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Box>
+        </Drawer>
     </AppBar>
   );
 };

@@ -1,3 +1,4 @@
+// src/Root.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./app/components/Navbar";
 import Home from "./app/pages/Home";
@@ -9,16 +10,17 @@ import Footer from "./app/components/Footer";
 
 const Root = () => {
   return (
-    <BrowserRouter basename="/Portfolio">
-      <ParticleBackground/>
-      <Navbar />
+    <BrowserRouter basename="/Portfolio"> {/* Ensure basename is correct */}
+      <ParticleBackground/> {/* Background element */}
+      <Navbar /> {/* Fixed/Sticky Navbar */}
       <Routes>
-      <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/project" element={<Project />} />
+        {/* Define routes for your pages */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/project" element={<Project />} />
       </Routes>
-      <Footer/>
+      <Footer/> {/* Footer at the bottom */}
     </BrowserRouter>
   );
 };

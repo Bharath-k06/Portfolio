@@ -1,3 +1,4 @@
+// src/app/pages/About.tsx
 import React, { useEffect } from "react";
 import {
   Typography,
@@ -28,7 +29,6 @@ import MysqlIcon from '@mui/icons-material/Storage';
 import KafkaIcon from '@mui/icons-material/Hub';
 import AwsIcon from '@mui/icons-material/Cloud';
 import { GitHub } from "@mui/icons-material";
-
 
 
 const MotionTypography = motion(Typography);
@@ -125,349 +125,367 @@ const About: React.FC = () => {
     useEffect(()=>{window.scrollTo(0,0)},[]);
   return (
     <>
-    <MotionBox
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={sectionVariants}
-      sx={{ padding: "3rem 1rem", textAlign: "center" }}
-    >
-      <MotionTypography
-        variant="h4"
-        gutterBottom
-        whileHover={{ scale: 1.05, color: "#1976d2" }}
-        transition={{ duration: 0.3 }}
-        sx={{
-          fontWeight: "bold",
-          display: "inline-block",
-          position: "relative",
-          mb: 4,
-          "&::after": {
-            content: '""',
+      {/* About Me Section */}
+      <MotionBox
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={sectionVariants}
+        sx={{ padding: { xs: "2rem 1rem", md: "3rem 1rem" }, textAlign: "center" }} // Adjusted padding
+      >
+        <MotionTypography
+          variant="h4"
+          gutterBottom
+          whileHover={{ scale: 1.05, color: "#1976d2" }}
+          transition={{ duration: 0.3 }}
+          sx={{
+            fontWeight: "bold",
+            display: "inline-block",
+            position: "relative",
+            mb: 4,
+            fontSize: { xs: '1.8rem', md: '2.125rem' }, // Responsive font size
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: -2,
+              width: "100%",
+              height: "3px",
+              backgroundColor: "#1976d2",
+              transform: "scaleX(0)",
+              transition: "transform 0.3s ease",
+              transformOrigin: "right",
+            },
+            "&:hover::after": {
+              transform: "scaleX(1)",
+              transformOrigin: "left",
+            },
+          }}
+        >
+          About Me
+        </MotionTypography>
+
+        <MotionTypography
+          variant="body1"
+          variants={itemVariants}
+          sx={{
+            maxWidth: 800,
+            margin: "0 auto",
+            mb: 6,
+            fontSize: { xs: '1rem', md: '1.1rem' }, // Responsive font size
+            color: "#444",
+            textAlign: "left",
+            padding: { xs: '0 1rem', md: '0' } // Added horizontal padding for text on mobile
+          }}
+        >
+          Specialist Programmer with 3 years of experience at Infosys, focused on
+          backend development using Java and Spring framework. Skilled in building
+          and orchestrating RESTful APIs, enhancing web applications, and designing
+          scalable module flows in both microservices and monolithic architectures.
+          Strong understanding of SOLID principles and commonly used design
+          patterns for writing clean, maintainable code. Experienced in front-end
+          development with Angular and proficient in Git and GitHub for version
+          control across all projects. Delivered reliable software solutions for major
+          clients and internal initiatives.
+        </MotionTypography>
+
+        {/* Skills Section */}
+        <MotionTypography
+          variant="h5"
+          gutterBottom
+          whileHover={{ scale: 1.05, color: "#1976d2" }}
+          transition={{ duration: 0.3 }}
+          sx={{ fontWeight: "bold", mt: 5, mb: 3, fontSize: { xs: '1.5rem', md: '1.875rem' } }} // Responsive font size
+        >
+          Skills
+        </MotionTypography>
+
+        <MotionStack
+          direction="row"
+          gap={{ xs: 1, md: 3 }} // Responsive gap
+          flexWrap="wrap"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ mt: 2 }}
+        >
+          {skills.map((skill, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.3, rotate: 5 }}
+              whileTap={{ scale: 1.1 }}
+              variants={itemVariants}
+            >
+              <Tooltip title={skill.name}>
+                <IconButton
+                  sx={{
+                    color: "#1976d2",
+                    transition: "color 0.3s",
+                    "&:hover": { color: "#0d47a1" },
+                    fontSize: { xs: '2rem', md: '2.5rem' } // Responsive icon size (adjust as needed)
+                  }}
+                >
+                  {skill.icon}
+                </IconButton>
+              </Tooltip>
+            </motion.div>
+          ))}
+        </MotionStack>
+
+        {/* Tools & Languages Section */}
+        <MotionTypography
+          variant="h5"
+          gutterBottom
+          whileHover={{ scale: 1.05, color: "#1976d2" }}
+          transition={{ duration: 0.3 }}
+          sx={{ fontWeight: "bold", mt: 6, mb: 3, fontSize: { xs: '1.5rem', md: '1.875rem' } }} // Responsive font size
+        >
+          Tools & Languages
+        </MotionTypography>
+
+        <MotionStack
+          direction="row"
+          gap={{ xs: 0.5, md: 1.5 }} // Responsive gap
+          flexWrap="wrap"
+          justifyContent="center"
+          sx={{ mt: 2 }}
+        >
+          {toolsAndLanguages.map((tool, index) => (
+            <motion.div
+              key={index}
+              // Removed continuousHorizontal animation for simplicity and potential performance
+              // You can add it back if desired, but ensure it doesn't affect layout
+            >
+              <Tooltip title={tool.name}>
+                <Chip
+                  icon={tool.image ? <Box component="img" src={tool.image} alt={tool.name} sx={{ width: { xs: 20, md: 24 }, height: { xs: 20, md: 24 } }} /> : tool.icon} // Responsive image size
+                  label={tool.name} // Added label to show name
+                  // color="primary" // Uncomment if you want colored chips
+                  // variant="outlined" // Uncomment for outlined chips
+                    sx={{ fontSize: { xs: '0.9rem', md: '1rem' }, padding: { xs: "8px 4px", md: "10px 5px" }, backgroundColor:"transparent" }} // Responsive font size and padding
+                />
+              </Tooltip>
+            </motion.div>
+          ))}
+        </MotionStack>
+
+        {/* Work Experience Section (Timeline) */}
+        <MotionTypography
+          variant="h5"
+          gutterBottom
+          whileHover={{ scale: 1.05, color: "#1976d2" }}
+          transition={{ duration: 0.3 }}
+          sx={{ fontWeight: "bold", mt: 6, mb: 3, fontSize: { xs: '1.5rem', md: '1.875rem' } }} // Responsive font size
+        >
+          <BusinessCenterIcon sx={{ mr: 1 }} /> Work Experience
+        </MotionTypography>
+
+        <MotionBox sx={{ maxWidth: 900, margin: "0 auto", position: "relative", pb: 4 }}>
+          {/* Vertical Timeline Line */}
+          <Box sx={{
             position: "absolute",
-            left: 0,
-            bottom: -2,
-            width: "100%",
-            height: "3px",
-            backgroundColor: "#1976d2",
-            transform: "scaleX(0)",
-            transition: "transform 0.3s ease",
-            transformOrigin: "right",
-          },
-          "&:hover::after": {
-            transform: "scaleX(1)",
-            transformOrigin: "left",
-          },
-        }}
-      >
-        About Me
-      </MotionTypography>
+            left: "20px", // Fixed left for mobile timeline line
+            top: 0,
+            bottom: 0,
+            borderLeft: "4px dotted lightgrey",
+            height: "100%",
+              '@media (min-width: 601px)': {
+                left: "50%",
+                transform: "translateX(-50%)",
+             }
+          }} />
 
-      <MotionTypography
-        variant="body1"
-        variants={itemVariants}
-        sx={{
-          maxWidth: 800,
-          margin: "0 auto",
-          mb: 6,
-          fontSize: "1.1rem",
-          color: "#444",
-          textAlign: "left",
-        }}
-      >
-        Specialist Programmer with 3 years of experience at Infosys, focused on
-        backend development using Java and Spring framework. Skilled in building
-        and orchestrating RESTful APIs, enhancing web applications, and designing
-        scalable module flows in both microservices and monolithic architectures.
-        Strong understanding of SOLID principles and commonly used design
-        patterns for writing clean, maintainable code. Experienced in front-end
-        development with Angular and proficient in Git and GitHub for version
-        control across all projects. Delivered reliable software solutions for major
-        clients and internal initiatives.
-      </MotionTypography>
-
-      <MotionTypography
-        variant="h5"
-        gutterBottom
-        whileHover={{ scale: 1.05, color: "#1976d2" }}
-        transition={{ duration: 0.3 }}
-        sx={{ fontWeight: "bold", mt: 5, mb: 3 }}
-      >
-        Skills
-      </MotionTypography>
-
-      <MotionStack
-        direction="row"
-        gap={3}
-        flexWrap="wrap"
-        justifyContent="center"
-        alignItems="center"
-        sx={{ mt: 2 }}
-      >
-        {skills.map((skill, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.3, rotate: 5 }}
-            whileTap={{ scale: 1.1 }}
-            variants={itemVariants}
-          >
-            <Tooltip title={skill.name}>
-              <IconButton
-                sx={{
-                  color: "#1976d2",
-                  transition: "color 0.3s",
-                  "&:hover": { color: "#0d47a1" },
-                }}
-              >
-                {skill.icon}
-              </IconButton>
-            </Tooltip>
-          </motion.div>
-        ))}
-      </MotionStack>
-
-      <MotionTypography
-        variant="h5"
-        gutterBottom
-        whileHover={{ scale: 1.05, color: "#1976d2" }}
-        transition={{ duration: 0.3 }}
-        sx={{ fontWeight: "bold", mt: 6, mb: 3 }}
-      >
-        Tools & Languages
-      </MotionTypography>
-
-      <MotionStack
-        direction="row"
-        gap={1.5}
-        flexWrap="wrap"
-        justifyContent="center"
-        sx={{ mt: 2 }}
-      >
-        {toolsAndLanguages.map((tool, index) => (
-          <motion.div
-            key={index}
-            animate={continuousHorizontal}
-          >
-            <Tooltip title={tool.name}>
-              <Chip
-                icon={tool.image ? <Box component="img" src={tool.image} alt={tool.name} sx={{ width: 24, height: 24 }} /> : tool.icon}
-
-                // color="primary"
-                // variant="outlined"
-                  sx={{ fontSize: "1rem", padding: "10px 5px", backgroundColor:"transparent" }}
-              />
-            </Tooltip>
-          </motion.div>
-        ))}
-      </MotionStack>
-
-      <MotionTypography
-        variant="h5"
-        gutterBottom
-        whileHover={{ scale: 1.05, color: "#1976d2" }}
-        transition={{ duration: 0.3 }}
-        sx={{ fontWeight: "bold", mt: 6, mb: 3 }}
-      >
-        <BusinessCenterIcon sx={{ mr: 1 }} /> Work Experience
-      </MotionTypography>
-
-      <MotionBox sx={{ maxWidth: 900, margin: "0 auto", position: "relative", pb: 4 }}>
-        <Box sx={{
-          position: "absolute",
-          left: "20px", // Keep left fixed for mobile timeline line
-          top: 0,
-          bottom: 0,
-          borderLeft: "4px dotted lightgrey",
-          height: "100%",
-            '@media (min-width: 601px)': {
-              left: "50%",
-              transform: "translateX(-50%)",
-           }
-        }} />
-
-        {workExperience.map((exp, index) => (
-          <MotionBox
-            key={index}
-            variants={itemVariants}
-            sx={{
-              display: "flex",
-              position: "relative",
-              mb: 6,
-              "&:last-child": { mb: 0 },
-              flexDirection: "row",
-               '@media (min-width: 601px)': {
-                 direction: index % 2 === 0 ? "row" : "row-reverse",
-               }
-            }}
-          >
-               <Box sx={{
-                width: "100%",
-                pr: 2,
-                pl: "3", // Keep significant left padding for mobile
-                textAlign: "left",
+          {workExperience.map((exp, index) => (
+            <MotionBox
+              key={index}
+              variants={itemVariants}
+              sx={{
+                display: "flex",
+                position: "relative",
+                mb: 6,
+                "&:last-child": { mb: 0 },
+                flexDirection: "row", // Keep row direction for mobile, handle layout with padding/width
                  '@media (min-width: 601px)': {
-                   width: "50%",
-                   pr: index % 2 === 0 ? 4 : 0,
-                   pl: index % 2 !== 0 ? 4 : "40px",
-                   textAlign: index % 2 === 0 ? "right" : "left",
+                   direction: index % 2 === 0 ? "row" : "row-reverse",
                  }
-              }}>
-                 <MotionTypography variant="h6" sx={{ fontWeight: "bold", color: "grey" }}>
-                    {exp.company}
-                 </MotionTypography>
-                 <Typography variant="body2" color="text.secondary">
-                    {exp.duration}
-                 </Typography>
-              </Box>
-
-               <Box sx={{
-                 position: "absolute",
-                 left: "16px", // Keep left fixed for mobile timeline circle
-                 top: "10px",
-                 width: "16px",
-                 height: "16px",
-                 backgroundColor: "#1976d2",
-                 borderRadius: "50%",
-                 zIndex: 1,
-                  '@media (min-width: 601px)': {
-                     left: "50%",
-                     transform: "translateX(-50%)",
-                   }
-               }} />
-
-
-               <Box sx={{
-                width: "100%",
-                pl: "3", // Keep significant left padding for mobile
-                pr: 2,
-                textAlign: "left",
-                 '@media (min-width: 601px)': {
-                   width: "50%",
-                   pl: index % 2 === 0 ? 4 : "40px",
-                   pr: index % 2 !== 0 ? 4 : 0,
-                   textAlign: index % 2 === 0 ? "left" : "right",
-                 }
-              }}>
-                 <MotionTypography variant="subtitle1" sx={{ fontWeight: "bold", color: "#333" }}>
-                    {exp.role}
-                 </MotionTypography>
-                 {exp.projects.map((project, pIndex) => (
-                   <MotionBox key={pIndex} variants={itemVariants} sx={{ mt: 1 }}>
-                     <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-                       Project: {project.name}
-                     </Typography>
-                     <Typography variant="body2" sx={{ mb: 1, color: "#555" }}>
-                       {project.description}
-                     </Typography>
-                     <Typography variant="body2" sx={{ fontStyle: "italic", color: "#777" }}>
-                       Tools used: {project.tools.join(", ")}
-                     </Typography>
-                   </MotionBox>
-                 ))}
-              </Box>
-            </MotionBox>
-        ))}
-      </MotionBox>
-
-
-      <MotionTypography
-        variant="h5"
-        gutterBottom
-        whileHover={{ scale: 1.05, color: "#1976d2" }}
-        transition={{ duration: 0.3 }}
-        sx={{ fontWeight: "bold", mt: 6, mb: 3 }}
-      >
-           <SchoolIcon sx={{ mr: 1 }} /> Education
-      </MotionTypography>
-
-       <MotionBox sx={{ maxWidth: 800, margin: "0 auto", position: "relative", pb: 4 }}>
-         <Box sx={{
-           position: "absolute",
-           left: "20px", // Keep left fixed for mobile timeline line
-           top: 0,
-           bottom: 0,
-           borderLeft: "4px dotted lightgrey",
-           height: "100%",
-            '@media (min-width: 601px)': {
-              left: "50%",
-               transform: "translateX(-50%)",
-            }
-         }} />
-
-         {education.map((edu, index) => (
-           <MotionBox
-             key={index}
-             variants={itemVariants}
-             sx={{
-               display: "flex",
-               position: "relative",
-               mb: 6,
-               "&:last-child": { mb: 0 },
-               flexDirection: "row",
-                '@media (min-width: 601px)': {
-                  direction: index % 2 === 0 ? "row" : "row-reverse",
-                }
-             }}
-           >
-                <Box sx={{
-                 width: "100%",
-                 pr: 2,
-                 pl: "3", // Keep significant left padding for mobile
-                 textAlign: "left",
-                  '@media (min-width: 601px)': {
-                    width: "50%",
-                    pr: index % 2 === 0 ? 4 : 0,
-                    pl: index % 2 !== 0 ? 4 : "40px",
-                    textAlign: index % 2 === 0 ? "right" : "left",
-                  }
-               }}>
-                  <MotionTypography variant="h6" sx={{ fontWeight: "bold", color: "#388e3c" }}>
-                     {edu.institution}
-                  </MotionTypography>
-                  <Typography variant="body2" color="text.secondary">
-                     {edu.year}
-                  </Typography>
-               </Box>
-
-                <Box sx={{
-                  position: "absolute",
-                  left: "16px", // Keep left fixed for mobile timeline circle
-                  top: "10px",
-                  width: "16px",
-                  height: "16px",
-                  backgroundColor: "#5cb85c",
-                  borderRadius: "50%",
-                  zIndex: 1,
+              }}
+            >
+                 {/* Left/Right Content Box (Company/Duration) */}
+                 <Box sx={{
+                  width: "100%", // Full width on mobile
+                  pr: { xs: 1, md: 2 }, // Responsive right padding
+                  pl: { xs: 5, md: 4 }, // Adjusted left padding for mobile to align with timeline
+                  textAlign: "left", // Left align on mobile
                    '@media (min-width: 601px)': {
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                    }
-                }} />
+                     width: "50%", // 50% width on desktop
+                     pr: index % 2 === 0 ? 4 : 0,
+                     pl: index % 2 !== 0 ? 4 : 4, // Adjust desktop padding for alignment
+                     textAlign: index % 2 === 0 ? "right" : "left",
+                   }
+                }}>
+                   <MotionTypography variant="h6" sx={{ fontWeight: "bold", color: "grey", fontSize: { xs: '1.1rem', md: '1.25rem' } }}> {/* Responsive font size */}
+                      {exp.company}
+                   </MotionTypography>
+                   <Typography variant="body2" color="text.secondary" sx={{ fontSize: { xs: '0.8rem', md: '0.875rem' } }}> {/* Responsive font size */}
+                      {exp.duration}
+                   </Typography>
+                </Box>
 
-                <Box sx={{
-                 width: "100%",
-                 pl: "3", // Keep significant left padding for mobile
-                 pr: 2,
-                 textAlign: "left",
+                 {/* Timeline Circle */}
+                 <Box sx={{
+                   position: "absolute",
+                   left: "16px", // Fixed left for mobile timeline circle - adjust if needed for visual alignment
+                   top: "10px",
+                   width: "16px",
+                   height: "16px",
+                   backgroundColor: "#1976d2",
+                   borderRadius: "50%",
+                   zIndex: 1,
+                    '@media (min-width: 601px)': {
+                       left: "50%",
+                       transform: "translateX(-50%)",
+                     }
+                 }} />
+
+
+                 {/* Left/Right Content Box (Role/Projects) */}
+                 <Box sx={{
+                  width: "100%", // Full width on mobile
+                  pl: { xs: 5, md: 4 }, // Adjusted left padding for mobile to align with timeline
+                  pr: { xs: 1, md: 2 }, // Responsive right padding
+                  textAlign: "left", // Left align on mobile
+                   '@media (min-width: 601px)': {
+                     width: "50%", // 50% width on desktop
+                     pl: index % 2 === 0 ? 4 : 4, // Adjust desktop padding for alignment
+                     pr: index % 2 !== 0 ? 4 : 0,
+                     textAlign: index % 2 === 0 ? "left" : "right",
+                   }
+                }}>
+                   <MotionTypography variant="subtitle1" sx={{ fontWeight: "bold", color: "#333", fontSize: { xs: '0.9rem', md: '1rem' } }}> {/* Responsive font size */}
+                      {exp.role}
+                   </MotionTypography>
+                   {exp.projects.map((project, pIndex) => (
+                     <MotionBox key={pIndex} variants={itemVariants} sx={{ mt: 1 }}>
+                       <Typography variant="subtitle2" sx={{ fontWeight: "bold", fontSize: { xs: '0.85rem', md: '0.9rem' } }}> {/* Responsive font size */}
+                         Project: {project.name}
+                       </Typography>
+                       <Typography variant="body2" sx={{ mb: 1, color: "#555", fontSize: { xs: '0.8rem', md: '0.875rem' } }}> {/* Responsive font size */}
+                         {project.description}
+                       </Typography>
+                       <Typography variant="body2" sx={{ fontStyle: "italic", color: "#777", fontSize: { xs: '0.75rem', md: '0.875rem' } }}> {/* Responsive font size */}
+                         Tools used: {project.tools.join(", ")}
+                       </Typography>
+                     </MotionBox>
+                   ))}
+                </Box>
+              </MotionBox>
+          ))}
+        </MotionBox>
+
+
+        {/* Education Section (Timeline) */}
+        <MotionTypography
+          variant="h5"
+          gutterBottom
+          whileHover={{ scale: 1.05, color: "#1976d2" }}
+          transition={{ duration: 0.3 }}
+          sx={{ fontWeight: "bold", mt: 6, mb: 3, fontSize: { xs: '1.5rem', md: '1.875rem' } }} // Responsive font size
+        >
+             <SchoolIcon sx={{ mr: 1 }} /> Education
+        </MotionTypography>
+
+         <MotionBox sx={{ maxWidth: 800, margin: "0 auto", position: "relative", pb: 4 }}>
+           {/* Vertical Timeline Line */}
+           <Box sx={{
+             position: "absolute",
+             left: "20px", // Fixed left for mobile timeline line
+             top: 0,
+             bottom: 0,
+             borderLeft: "4px dotted lightgrey",
+             height: "100%",
+              '@media (min-width: 601px)': {
+                left: "50%",
+                transform: "translateX(-50%)",
+              }
+           }} />
+
+           {education.map((edu, index) => (
+             <MotionBox
+               key={index}
+               variants={itemVariants}
+               sx={{
+                 display: "flex",
+                 position: "relative",
+                 mb: 6,
+                 "&:last-child": { mb: 0 },
+                 flexDirection: "row", // Keep row direction for mobile, handle layout with padding/width
                   '@media (min-width: 601px)': {
-                    width: "50%",
-                    pl: index % 2 === 0 ? 4 : "40px",
-                    pr: index % 2 !== 0 ? 4 : 0,
-                    textAlign: index % 2 === 0 ? "left" : "right",
+                    direction: index % 2 === 0 ? "row" : "row-reverse",
                   }
-               }}>
-                  <MotionTypography variant="subtitle1" sx={{ fontWeight: "bold", color: "#555" }}>
-                     {edu.degree}
-                  </MotionTypography>
-                    <Typography variant="body2" color="text.secondary">
-                     {edu.grade}
-                  </Typography>
-               </Box>
-             </MotionBox>
-         ))}
-       </MotionBox>
+               }}
+             >
+                  {/* Left/Right Content Box (Institution/Year) */}
+                  <Box sx={{
+                   width: "100%", // Full width on mobile
+                   pr: { xs: 1, md: 2 }, // Responsive right padding
+                   pl: { xs: 5, md: 4 }, // Adjusted left padding for mobile to align with timeline
+                   textAlign: "left", // Left align on mobile
+                    '@media (min-width: 601px)': {
+                      width: "50%", // 50% width on desktop
+                      pr: index % 2 === 0 ? 4 : 0,
+                      pl: index % 2 !== 0 ? 4 : 4, // Adjust desktop padding for alignment
+                      textAlign: index % 2 === 0 ? "right" : "left",
+                    }
+                }}>
+                   <MotionTypography variant="h6" sx={{ fontWeight: "bold", color: "#388e3c", fontSize: { xs: '1.1rem', md: '1.25rem' } }}> {/* Responsive font size */}
+                      {edu.institution}
+                   </MotionTypography>
+                   <Typography variant="body2" color="text.secondary" sx={{ fontSize: { xs: '0.8rem', md: '0.875rem' } }}> {/* Responsive font size */}
+                      {edu.year}
+                   </Typography>
+                </Box>
 
-    </MotionBox></>
+                 {/* Timeline Circle */}
+                 <Box sx={{
+                   position: "absolute",
+                   left: "16px", // Fixed left for mobile timeline circle - adjust if needed for visual alignment
+                   top: "10px",
+                   width: "16px",
+                   height: "16px",
+                   backgroundColor: "#5cb85c",
+                   borderRadius: "50%",
+                   zIndex: 1,
+                    '@media (min-width: 601px)': {
+                       left: "50%",
+                       transform: "translateX(-50%)",
+                     }
+                 }} />
+
+                 {/* Left/Right Content Box (Degree/Grade) */}
+                 <Box sx={{
+                   width: "100%", // Full width on mobile
+                   pl: { xs: 5, md: 4 }, // Adjusted left padding for mobile to align with timeline
+                   pr: { xs: 1, md: 2 }, // Responsive right padding
+                   textAlign: "left", // Left align on mobile
+                    '@media (min-width: 601px)': {
+                      width: "50%", // 50% width on desktop
+                      pl: index % 2 === 0 ? 4 : 4, // Adjust desktop padding for alignment
+                      pr: index % 2 !== 0 ? 4 : 0,
+                      textAlign: index % 2 === 0 ? "left" : "right",
+                    }
+                 }}>
+                   <MotionTypography variant="subtitle1" sx={{ fontWeight: "bold", color: "#555", fontSize: { xs: '0.9rem', md: '1rem' } }}> {/* Responsive font size */}
+                      {edu.degree}
+                   </MotionTypography>
+                     <Typography variant="body2" color="text.secondary" sx={{ fontSize: { xs: '0.8rem', md: '0.875rem' } }}> {/* Responsive font size */}
+                      {edu.grade}
+                   </Typography>
+                </Box>
+              </MotionBox>
+          ))}
+        </MotionBox>
+
+      </MotionBox>
+    </>
   );
 };
 
