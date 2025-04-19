@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Typography, Stack  } from '@mui/material'; 
-import PhoneIcon from '@mui/icons-material/Phone'; 
-import { Route } from 'react-router-dom';
-
+import { Box, Typography, Stack, Link as MuiLink } from '@mui/material';
+import PhoneIcon from '@mui/icons-material/Phone';
+// Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 
 
 const Footer: React.FC = () => {
@@ -10,24 +10,31 @@ const Footer: React.FC = () => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: '#f4f4f4', 
-        color: '#555', 
+        backgroundColor: '#f4f4f4',
+        color: '#555',
         padding: '40px 20px',
-        textAlign: 'center', 
-        borderTop: '1px solid #e0e0e0', 
-        mt: 8, 
+        textAlign: 'center',
+        borderTop: '1px solid #e0e0e0',
+        mt: 8,
       }}
     >
       <Stack
         direction="row"
-        spacing={3} 
-        justifyContent="center" 
-        alignItems="center" 
-        sx={{ mb: 3, flexWrap: 'wrap' }} 
-      > 
-        <Route path="/Portfolio/contact"  >
-           <PhoneIcon sx={{ mr: 0.5 ,display: 'flex', alignItems: 'center'}} /> Contact
-        </Route>
+        spacing={3}
+        justifyContent="center"
+        alignItems="center"
+        sx={{ mb: 3, flexWrap: 'wrap' }}
+      >
+        {/* Modified MuiLink to work with React Router */}
+        <MuiLink
+          component={Link} // Use the Link component from react-router-dom
+          to="/contact"   // Use the 'to' prop with the internal path
+          color="inherit"
+          underline="hover"
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+            <PhoneIcon sx={{ mr: 0.5 }} /> Contact
+        </MuiLink>
 
 
       </Stack>
