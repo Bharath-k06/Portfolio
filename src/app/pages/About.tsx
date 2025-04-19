@@ -303,7 +303,7 @@ const About: React.FC = () => {
                <Box sx={{
                 width: "100%",
                 pr: 2,
-                pl: "40px", // Keep significant left padding for mobile
+                pl: "3", // Keep significant left padding for mobile
                 textAlign: "left",
                  '@media (min-width: 601px)': {
                    width: "50%",
@@ -338,7 +338,7 @@ const About: React.FC = () => {
 
                <Box sx={{
                 width: "100%",
-                pl: "40px", // Keep significant left padding for mobile
+                pl: "3", // Keep significant left padding for mobile
                 pr: 2,
                 textAlign: "left",
                  '@media (min-width: 601px)': {
@@ -412,7 +412,7 @@ const About: React.FC = () => {
                 <Box sx={{
                  width: "100%",
                  pr: 2,
-                 pl: "40px", // Keep significant left padding for mobile
+                 pl: "3", // Keep significant left padding for mobile
                  textAlign: "left",
                   '@media (min-width: 601px)': {
                     width: "50%",
@@ -446,7 +446,7 @@ const About: React.FC = () => {
 
                 <Box sx={{
                  width: "100%",
-                 pl: "40px", // Keep significant left padding for mobile
+                 pl: "3", // Keep significant left padding for mobile
                  pr: 2,
                  textAlign: "left",
                   '@media (min-width: 601px)': {

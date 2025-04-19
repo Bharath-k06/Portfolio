@@ -27,8 +27,8 @@ const Footer: React.FC = () => {
       >
         {/* Modified MuiLink to work with React Router */}
         <MuiLink
-          component={Link} // Use the Link component from react-router-dom
-          to="/contact"   // Use the 'to' prop with the internal path
+          component={Link} 
+          to="/contact"   
           color="inherit"
           underline="hover"
           sx={{ display: 'flex', alignItems: 'center' }}
