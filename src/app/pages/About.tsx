@@ -251,10 +251,10 @@ const About: React.FC = () => {
             <Tooltip title={tool.name}>
               <Chip
                 icon={tool.image ? <Box component="img" src={tool.image} alt={tool.name} sx={{ width: 24, height: 24 }} /> : tool.icon}
-                
+
                 // color="primary"
                 // variant="outlined"
-                 sx={{ fontSize: "1rem", padding: "10px 5px", backgroundColor:"transparent" }}
+                  sx={{ fontSize: "1rem", padding: "10px 5px", backgroundColor:"transparent" }}
               />
             </Tooltip>
           </motion.div>
@@ -274,14 +274,14 @@ const About: React.FC = () => {
       <MotionBox sx={{ maxWidth: 900, margin: "0 auto", position: "relative", pb: 4 }}>
         <Box sx={{
           position: "absolute",
-          left: "20px",
+          left: "20px", // Keep left fixed for mobile timeline line
           top: 0,
           bottom: 0,
           borderLeft: "4px dotted lightgrey",
           height: "100%",
-           '@media (min-width: 601px)': {
+            '@media (min-width: 601px)': {
               left: "50%",
-               transform: "translateX(-50%)",
+              transform: "translateX(-50%)",
            }
         }} />
 
@@ -296,76 +296,76 @@ const About: React.FC = () => {
               "&:last-child": { mb: 0 },
               flexDirection: "row",
                '@media (min-width: 601px)': {
-                  direction: index % 2 === 0 ? "row" : "row-reverse",
+                 direction: index % 2 === 0 ? "row" : "row-reverse",
                }
             }}
           >
-             <Box sx={{
-               width: "100%",
-               pr: 2,
-               pl: "40px",
-               textAlign: "left",
-               '@media (min-width: 601px)': {
-                  width: "50%",
-                  pr: index % 2 === 0 ? 4 : 0,
-                  pl: index % 2 !== 0 ? 4 : "40px",
-                  textAlign: index % 2 === 0 ? "right" : "left",
-               }
-            }}>
-                <MotionTypography variant="h6" sx={{ fontWeight: "bold", color: "grey" }}>
-                    {exp.company}
-                </MotionTypography>
-                <Typography variant="body2" color="text.secondary">
-                    {exp.duration}
-                </Typography>
-            </Box>
-
-             <Box sx={{
-                position: "absolute",
-                left: "16px",
-                top: "10px",
-                width: "16px",
-                height: "16px",
-                backgroundColor: "#1976d2",
-                borderRadius: "50%",
-                zIndex: 1,
+               <Box sx={{
+                width: "100%",
+                pr: 2,
+                pl: "40px", // Keep significant left padding for mobile
+                textAlign: "left",
                  '@media (min-width: 601px)': {
-                    left: "50%",
-                     transform: "translateX(-50%)",
+                   width: "50%",
+                   pr: index % 2 === 0 ? 4 : 0,
+                   pl: index % 2 !== 0 ? 4 : "40px",
+                   textAlign: index % 2 === 0 ? "right" : "left",
                  }
-             }} />
+              }}>
+                 <MotionTypography variant="h6" sx={{ fontWeight: "bold", color: "grey" }}>
+                    {exp.company}
+                 </MotionTypography>
+                 <Typography variant="body2" color="text.secondary">
+                    {exp.duration}
+                 </Typography>
+              </Box>
+
+               <Box sx={{
+                 position: "absolute",
+                 left: "16px", // Keep left fixed for mobile timeline circle
+                 top: "10px",
+                 width: "16px",
+                 height: "16px",
+                 backgroundColor: "#1976d2",
+                 borderRadius: "50%",
+                 zIndex: 1,
+                  '@media (min-width: 601px)': {
+                     left: "50%",
+                     transform: "translateX(-50%)",
+                   }
+               }} />
 
 
-            <Box sx={{
-               width: "100%",
-               pl: "40px",
-               pr: 2,
-               textAlign: "left",
-               '@media (min-width: 601px)': {
-                  width: "50%",
-                  pl: index % 2 === 0 ? 4 : "40px",
-                  pr: index % 2 !== 0 ? 4 : 0,
-                  textAlign: index % 2 === 0 ? "left" : "right",
-               }
-            }}>
-                <MotionTypography variant="subtitle1" sx={{ fontWeight: "bold", color: "#333" }}>
+               <Box sx={{
+                width: "100%",
+                pl: "40px", // Keep significant left padding for mobile
+                pr: 2,
+                textAlign: "left",
+                 '@media (min-width: 601px)': {
+                   width: "50%",
+                   pl: index % 2 === 0 ? 4 : "40px",
+                   pr: index % 2 !== 0 ? 4 : 0,
+                   textAlign: index % 2 === 0 ? "left" : "right",
+                 }
+              }}>
+                 <MotionTypography variant="subtitle1" sx={{ fontWeight: "bold", color: "#333" }}>
                     {exp.role}
-                </MotionTypography>
-                {exp.projects.map((project, pIndex) => (
-                  <MotionBox key={pIndex} variants={itemVariants} sx={{ mt: 1 }}>
-                    <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-                      Project: {project.name}
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 1, color: "#555" }}>
-                      {project.description}
-                    </Typography>
-                    <Typography variant="body2" sx={{ fontStyle: "italic", color: "#777" }}>
-                      Tools used: {project.tools.join(", ")}
-                    </Typography>
-                  </MotionBox>
-                ))}
-            </Box>
-          </MotionBox>
+                 </MotionTypography>
+                 {exp.projects.map((project, pIndex) => (
+                   <MotionBox key={pIndex} variants={itemVariants} sx={{ mt: 1 }}>
+                     <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+                       Project: {project.name}
+                     </Typography>
+                     <Typography variant="body2" sx={{ mb: 1, color: "#555" }}>
+                       {project.description}
+                     </Typography>
+                     <Typography variant="body2" sx={{ fontStyle: "italic", color: "#777" }}>
+                       Tools used: {project.tools.join(", ")}
+                     </Typography>
+                   </MotionBox>
+                 ))}
+              </Box>
+            </MotionBox>
         ))}
       </MotionBox>
 
@@ -377,95 +377,95 @@ const About: React.FC = () => {
         transition={{ duration: 0.3 }}
         sx={{ fontWeight: "bold", mt: 6, mb: 3 }}
       >
-         <SchoolIcon sx={{ mr: 1 }} /> Education
+           <SchoolIcon sx={{ mr: 1 }} /> Education
       </MotionTypography>
 
        <MotionBox sx={{ maxWidth: 800, margin: "0 auto", position: "relative", pb: 4 }}>
-        <Box sx={{
-          position: "absolute",
-          left: "20px",
-          top: 0,
-          bottom: 0,
-          borderLeft: "4px dotted lightgrey",
-          height: "100%",
-           '@media (min-width: 601px)': {
+         <Box sx={{
+           position: "absolute",
+           left: "20px", // Keep left fixed for mobile timeline line
+           top: 0,
+           bottom: 0,
+           borderLeft: "4px dotted lightgrey",
+           height: "100%",
+            '@media (min-width: 601px)': {
               left: "50%",
                transform: "translateX(-50%)",
-           }
-        }} />
+            }
+         }} />
 
-        {education.map((edu, index) => (
-          <MotionBox
-            key={index}
-            variants={itemVariants}
-            sx={{
-              display: "flex",
-              position: "relative",
-              mb: 6,
-              "&:last-child": { mb: 0 },
-              flexDirection: "row",
-               '@media (min-width: 601px)': {
+         {education.map((edu, index) => (
+           <MotionBox
+             key={index}
+             variants={itemVariants}
+             sx={{
+               display: "flex",
+               position: "relative",
+               mb: 6,
+               "&:last-child": { mb: 0 },
+               flexDirection: "row",
+                '@media (min-width: 601px)': {
                   direction: index % 2 === 0 ? "row" : "row-reverse",
-               }
-            }}
-          >
-             <Box sx={{
-               width: "100%",
-               pr: 2,
-               pl: "40px",
-               textAlign: "left",
-                '@media (min-width: 601px)': {
-                  width: "50%",
-                  pr: index % 2 === 0 ? 4 : 0,
-                  pl: index % 2 !== 0 ? 4 : "40px",
-                  textAlign: index % 2 === 0 ? "right" : "left",
                 }
-            }}>
-                <MotionTypography variant="h6" sx={{ fontWeight: "bold", color: "#388e3c" }}>
-                    {edu.institution}
-                </MotionTypography>
-                <Typography variant="body2" color="text.secondary">
-                    {edu.year}
-                </Typography>
-            </Box>
+             }}
+           >
+                <Box sx={{
+                 width: "100%",
+                 pr: 2,
+                 pl: "40px", // Keep significant left padding for mobile
+                 textAlign: "left",
+                  '@media (min-width: 601px)': {
+                    width: "50%",
+                    pr: index % 2 === 0 ? 4 : 0,
+                    pl: index % 2 !== 0 ? 4 : "40px",
+                    textAlign: index % 2 === 0 ? "right" : "left",
+                  }
+               }}>
+                  <MotionTypography variant="h6" sx={{ fontWeight: "bold", color: "#388e3c" }}>
+                     {edu.institution}
+                  </MotionTypography>
+                  <Typography variant="body2" color="text.secondary">
+                     {edu.year}
+                  </Typography>
+               </Box>
 
-             <Box sx={{
-                position: "absolute",
-                left: "16px",
-                top: "10px",
-                width: "16px",
-                height: "16px",
-                backgroundColor: "#5cb85c",
-                borderRadius: "50%",
-                zIndex: 1,
-                 '@media (min-width: 601px)': {
-                    left: "50%",
-                     transform: "translateX(-50%)",
-                 }
-             }} />
+                <Box sx={{
+                  position: "absolute",
+                  left: "16px", // Keep left fixed for mobile timeline circle
+                  top: "10px",
+                  width: "16px",
+                  height: "16px",
+                  backgroundColor: "#5cb85c",
+                  borderRadius: "50%",
+                  zIndex: 1,
+                   '@media (min-width: 601px)': {
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }
+                }} />
 
-            <Box sx={{
-               width: "100%",
-               pl: "40px",
-               pr: 2,
-               textAlign: "left",
-                '@media (min-width: 601px)': {
-                  width: "50%",
-                  pl: index % 2 === 0 ? 4 : "40px",
-                  pr: index % 2 !== 0 ? 4 : 0,
-                  textAlign: index % 2 === 0 ? "left" : "right",
-                }
-            }}>
-                <MotionTypography variant="subtitle1" sx={{ fontWeight: "bold", color: "#555" }}>
-                    {edu.degree}
-                </MotionTypography>
-                 <Typography variant="body2" color="text.secondary">
-                    {edu.grade}
-                </Typography>
-            </Box>
-          </MotionBox>
-        ))}
-      </MotionBox>
+                <Box sx={{
+                 width: "100%",
+                 pl: "40px", // Keep significant left padding for mobile
+                 pr: 2,
+                 textAlign: "left",
+                  '@media (min-width: 601px)': {
+                    width: "50%",
+                    pl: index % 2 === 0 ? 4 : "40px",
+                    pr: index % 2 !== 0 ? 4 : 0,
+                    textAlign: index % 2 === 0 ? "left" : "right",
+                  }
+               }}>
+                  <MotionTypography variant="subtitle1" sx={{ fontWeight: "bold", color: "#555" }}>
+                     {edu.degree}
+                  </MotionTypography>
+                    <Typography variant="body2" color="text.secondary">
+                     {edu.grade}
+                  </Typography>
+               </Box>
+             </MotionBox>
+         ))}
+       </MotionBox>
 
     </MotionBox></>
   );
