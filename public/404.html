@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Page Not Found</title>
+  <script type="text/javascript">
+    var pathSegments = location.pathname.split('/');
+    // Assuming your repo name is the second segment (index 1) after the username.github.io part
+    // Example: https://bharath-k06.github.io/Portfolio/about -> pathSegments = ["", "Portfolio", "about"]
+    // The correct base path is "/Portfolio/"
+    var repoName = pathSegments[1];
+    // Redirect to the index.html at the base path, preserving query parameters
+    location.replace(
+      location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/' + repoName + '/' + location.search
+    );
+  </script>
+</head>
+<body>
+  This page is redirecting...
+</body>
+</html>

@@ -170,15 +170,14 @@ const About: React.FC = () => {
             padding: { xs: '0 1rem', md: '0' } // Added horizontal padding for text on mobile
           }}
         >
-          Specialist Programmer with 3 years of experience at Infosys, focused on
+          Software developer with 3 years of experience, focused on
           backend development using Java and Spring framework. Skilled in building
           and orchestrating RESTful APIs, enhancing web applications, and designing
           scalable module flows in both microservices and monolithic architectures.
           Strong understanding of SOLID principles and commonly used design
           patterns for writing clean, maintainable code. Experienced in front-end
           development with Angular and proficient in Git and GitHub for version
-          control across all projects. Delivered reliable software solutions for major
-          clients and internal initiatives.
+          control across all projects. 
         </MotionTypography>
 
         {/* Skills Section */}
