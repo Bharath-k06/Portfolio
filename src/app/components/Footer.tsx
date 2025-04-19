@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
         alignItems="center" 
         sx={{ mb: 3, flexWrap: 'wrap' }} 
       > 
-        <MuiLink href="/contact" color="inherit" underline="hover" sx={{ display: 'flex', alignItems: 'center' }}>
+        <MuiLink href="/Portfolio/contact" color="inherit" underline="hover" sx={{ display: 'flex', alignItems: 'center' }}>
            <PhoneIcon sx={{ mr: 0.5 }} /> Contact
         </MuiLink>
 
