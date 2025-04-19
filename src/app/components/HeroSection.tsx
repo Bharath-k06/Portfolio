@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
               }}
           >
               <Avatar
-                  src="/Portfolio/icons/mainImage.jpg"
+                  src="/Portfolio/mainImage.jpg"
                   alt="B"
                   sx={{
                       width: 220,
