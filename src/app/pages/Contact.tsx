@@ -122,7 +122,7 @@ const Contact = () => {
                 >
                   <IconButton
                     color="primary"
-                    href="mailto:your.email@example.com" // Make sure to change this to your actual email
+                    href="mailto:bharathk0601@gmail.com.com" // Make sure to change this to your actual email
                     target="_blank"
                     size="large"
                     sx={{
